@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    	
+    	<RelativeLayout 
+    	android:id="@+id/CanvasLayout"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical" >
+    	
+	    	<TextView
+	        	android:id="@+id/workoholic"
+        		android:textSize="40sp"
+        		android:fontFamily="sans-serif"
+        		android:gravity="center"
+        		android:typeface="monospace"
+        		android:layout_height="wrap_content"
+        		android:layout_width="fill_parent"
+        		android:layout_marginRight="18dp"
+        		android:layout_marginTop="5dp"
+        		android:text="@string/workoholic" />
+	    	
+    	</RelativeLayout> <!--  ends CanvasLayout -->
+    	<!--  clocks linearlayout -->
+    	<RelativeLayout 
+    	android:id="@+id/clocksLayout"
+    	android:layout_width="fill_parent"
+    	android:layout_height="100dp"
+    	android:orientation="vertical" 
+    	android:background="#E8A2B4"
+    	android:layout_alignParentBottom="true"
+    	>
+    	<!--  working clock -->
+    	
+    	<LinearLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="50dp"
+    	android:layout_gravity="bottom"
+    	android:orientation="horizontal" 
+    	>
+    	<TextView
+	        android:id="@+id/workTimeText"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="7"
+        	android:text="@string/timeText" />
+    	<Button
+        android:id="@+id/workPlayBtn"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/workPlayBtn" />
+    	</LinearLayout> <!--  working clock ends-->
+    	
+    	<!--  coffee clock --> <!--  coffee clock ends -->
+
+    	<LinearLayout
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="50dp"
+    	    android:layout_alignParentBottom="true"
+    	    android:layout_alignParentLeft="true"
+    	    android:orientation="horizontal" >
+
+    	    <TextView
+    	        android:id="@+id/coffeeTimeText"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:layout_weight="7"
+    	        android:text="@string/timeText" />
+
+    	    <Button
+    	        android:id="@+id/coffeePlayBtn"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:layout_weight="1"
+    	        android:text="@string/coffeePlayBtn" />
+    	</LinearLayout>
+    
+	</RelativeLayout> <!--  clocks linearlayout ends : -->
+ </RelativeLayout>   	

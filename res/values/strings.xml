@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">workoholic</string>
+    <string name="action_settings">Settings</string>
+    <string name="beginBtn">Start</string>
+    <string name="stopBtn">Stop</string>
+    <string name="coffeeBtn">Coffee</string>
+    <string name="timeText">0</string>
+    <string name="workoholic">Workohlic</string>
+    <string name="playBtn">Play</string>
+    <string name="workPlayBtn">work</string>
+    <string name="coffeePlayBtn">coffee</string>
+
+</resources>
