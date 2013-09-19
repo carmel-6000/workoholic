@@ -21,8 +21,8 @@ public class WorkingSessionsIO
   private SQLiteDatabase database;
   private SQLiteHandler dbHelper;
   @SuppressLint("SimpleDateFormat") SimpleDateFormat SDFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-  private String[] allColumns = { SQLiteHandler.COL_ID,SQLiteHandler.COL_BEGIN_TIME,SQLiteHandler.COL_END_TIME,
-  SQLiteHandler.COL_DATE };
+  //private String[] allColumns = { SQLiteHandler.COL_ID,SQLiteHandler.COL_BEGIN_TIME,SQLiteHandler.COL_END_TIME,
+  //SQLiteHandler.COL_DATE };
   
   public WorkingSessionsIO(Context context) {
     dbHelper = new SQLiteHandler(context);
@@ -76,12 +76,7 @@ public class WorkingSessionsIO
     return newComment;
 */
   }
-  public void deleteComment(Comment comment) 
-  {
-    long id = comment.getId();
-    Log.d("CommentsDataSource","Comment deleted with id: " + id);
-    database.delete(SQLiteHandler.TABLE_NAME, SQLiteHandler.COL_ID+ " = " + id, null);
-  }
+/*
   public List<Comment> getAllComments() 
   {
     List<Comment> comments = new ArrayList<Comment>();
@@ -96,10 +91,12 @@ public class WorkingSessionsIO
     cursor.close();
     return comments;
   }
+  
   private Comment cursorToComment(Cursor cursor) {
     Comment comment = new Comment();
     comment.setId(cursor.getLong(0));
     comment.setComment(cursor.getString(1));
     return comment;
   }
+  */
 }
