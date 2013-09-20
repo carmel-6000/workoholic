@@ -14,16 +14,16 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-
 public class WorkingSessionsIO 
 {
   // Database fields
   private SQLiteDatabase database;
   private SQLiteHandler dbHelper;
   @SuppressLint("SimpleDateFormat") SimpleDateFormat SDFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-  //private String[] allColumns = { SQLiteHandler.COL_ID,SQLiteHandler.COL_BEGIN_TIME,SQLiteHandler.COL_END_TIME,
-  //SQLiteHandler.COL_DATE };
-  
+  /*
+  private String[] allColumns = { SQLiteHandler.COL_ID,SQLiteHandler.COL_BEGIN_TIME,SQLiteHandler.COL_END_TIME,
+  SQLiteHandler.COL_DATE };
+  */
   public WorkingSessionsIO(Context context) {
     dbHelper = new SQLiteHandler(context);
   }

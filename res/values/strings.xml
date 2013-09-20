@@ -11,5 +11,9 @@
     <string name="playBtn">Play</string>
     <string name="workPlayBtn">work</string>
     <string name="coffeePlayBtn">coffee</string>
-
+    
+    
+	<string name="hint">Editor #%d</string>
+	<string name="something">Something</string>
+    
 </resources>
