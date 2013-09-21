@@ -14,9 +14,12 @@
 
 package com.example.workoholic;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Button;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class ViewPagerIndicatorActivity extends SherlockFragmentActivity 
@@ -25,7 +28,6 @@ public class ViewPagerIndicatorActivity extends SherlockFragmentActivity
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
-    //setContentView(R.layout.activity_main);
     ViewPager pager=(ViewPager)findViewById(R.id.pager);
     pager.setAdapter(buildAdapter());
   }

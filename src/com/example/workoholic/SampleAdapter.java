@@ -18,6 +18,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 public class SampleAdapter extends FragmentPagerAdapter {
   Context ctxt=null;
@@ -29,16 +30,25 @@ public class SampleAdapter extends FragmentPagerAdapter {
 
   @Override
   public int getCount() {
-    return(10);
+    return(2);
   }
 
   @Override
   public Fragment getItem(int position) {
-    return(EditorFragment.newInstance(position));
+	  //Log.d("SampleAdapter","position -->"+position);
+    if (position ==  0)
+    {
+	  return(EditorFragment.newInstance(position));
+    }else 
+      return GraphFragment.newInstance(position); 
   }
 
   @Override
   public String getPageTitle(int position) {
-    return(EditorFragment.getTitle(ctxt, position));
+    if (position == 0){
+	  return(EditorFragment.getTitle(ctxt, position));}
+    else{
+    	return(GraphFragment.getTitle(ctxt, position));
+    }
   }
 }

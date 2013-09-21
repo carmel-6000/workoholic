@@ -3,7 +3,7 @@ package com.example.workoholic;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+import android.content.Context;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,13 +17,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SessionCanvas {
-	Activity sessAct;
+	View sessAct;
+	Activity context;
 	SessionHandler sessionHandler;
 	RelativeLayout thisView;
     public static final int BEGIN_TIME_TEXT=88;
-	public SessionCanvas(Activity sessAct,SessionHandler sessionHandler)
+	public SessionCanvas(View sessAct,SessionHandler sessionHandler,Activity context)
 	{
 		this.sessAct = sessAct;
+		this.context = context;
 		this.sessionHandler = sessionHandler;
 	
 	}
@@ -31,13 +33,13 @@ public class SessionCanvas {
 		this.thisView = thisView;
 	}
 	public void printSessionBeginTime(final Date date){
-		sessAct.runOnUiThread(new Runnable(){
+		context.runOnUiThread(new Runnable(){
 			@TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint({ "InlinedApi", "SimpleDateFormat" }) @Override
 			public void run() 
 			{
 				 RelativeLayout thisView = (RelativeLayout) sessAct.findViewById(R.id.CanvasLayout);
 				 setCurrentView(thisView);
-				 TextView beginTime=new TextView(sessAct);
+				 TextView beginTime=new TextView(context);
 				 beginTime.setTextSize(18);
 				 SimpleDateFormat format1 = new SimpleDateFormat("HH:mm:ss");
 				 String curTime = format1.format(date);
@@ -54,7 +56,7 @@ public class SessionCanvas {
 				 btnParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
 				 btnParams.bottomMargin = sessAct.findViewById(R.id.clocksLayout).getHeight() + 10; 	 
 				 btnParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-				 Button endBtn = new Button(sessAct);
+				 Button endBtn = new Button(context);
 				 endBtn.setText("End Session");
 				 thisView.addView(endBtn,btnParams);
 				 endBtn.setOnClickListener(new OnClickListener(){	
@@ -69,12 +71,13 @@ public class SessionCanvas {
 	}
 	public void printSessionEndTime()
 	{
-		sessAct.runOnUiThread(new Runnable(){
+		
+		context.runOnUiThread(new Runnable(){
 			@SuppressLint({ "SimpleDateFormat", "InlinedApi" }) public void run() 
 			{
 				String endTime = (new SimpleDateFormat("HH:mm:ss")).format(Calendar.getInstance().getTime());
 				//RelativeLayout tView = (RelativeLayout) sessAct.findViewById(R.id.CanvasLayout);
-				TextView endTimeText=new TextView(sessAct);
+				TextView endTimeText=new TextView(context);
 				endTimeText.setTextSize(18);
 				endTimeText.setText("Ends at: "+endTime);
 				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,

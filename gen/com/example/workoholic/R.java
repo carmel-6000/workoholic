@@ -959,10 +959,10 @@ containing a value of this type.
         public static final int coffeeTimeText=0x7f040037;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040026;
-        public static final int editor=0x7f04003a;
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
         public static final int normal=0x7f040001;
+        public static final int page_one=0x7f04003a;
         public static final int pager=0x7f040039;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -1003,9 +1003,10 @@ containing a value of this type.
         public static final int activity_main=0x7f030015;
         public static final int activity_screen_slide=0x7f030016;
         public static final int editor=0x7f030017;
-        public static final int main=0x7f030018;
-        public static final int sherlock_spinner_dropdown_item=0x7f030019;
-        public static final int sherlock_spinner_item=0x7f03001a;
+        public static final int graph_view=0x7f030018;
+        public static final int main=0x7f030019;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001a;
+        public static final int sherlock_spinner_item=0x7f03001b;
     }
     public static final class menu {
         public static final int actions=0x7f0b0000;

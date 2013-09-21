@@ -2,7 +2,9 @@ package com.example.workoholic;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -32,7 +34,7 @@ public class Clock
 	
 	final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 	ScheduledFuture<?> process;
-	Activity act;
+	View act;
 	String clockName;
 	SessionHandler sessionHandler;
 	SessionCanvas sessionCanvas;
@@ -40,12 +42,15 @@ public class Clock
 	Calendar cal1 = Calendar.getInstance();
 	Date beginTime; 
 	SimpleDateFormat format1;
+	Activity context;
 	
-	public Clock(Activity act,TextView clockHolder,String clockName,SessionHandler sessionHandler){
+	public Clock(View act,TextView clockHolder,String clockName,SessionHandler sessionHandler,
+			Activity context){
 		this.clockName = clockName;
 		this.act = act;
+		this.context = context;
 		this.sessionHandler = sessionHandler;
-		this.sessionCanvas = new SessionCanvas(act,sessionHandler);
+		this.sessionCanvas = new SessionCanvas(act,sessionHandler,context);
 		this.clockHolder = clockHolder;
 		Log.d("Counter","Counter is Constructed");
 		
@@ -80,6 +85,7 @@ public class Clock
 			thisClock.put("began",true);
 			beginCounter();
 		}
+		
 	}
 	public void beginCounter(){
 		process = service.scheduleWithFixedDelay(new Runnable(){
@@ -99,7 +105,7 @@ public class Clock
 	}
 	@SuppressLint("SimpleDateFormat") public void incClockBySecond(){
 		format1 = new SimpleDateFormat("HH:mm:ss");
-		act.runOnUiThread(new Runnable(){
+		context.runOnUiThread(new Runnable(){
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub

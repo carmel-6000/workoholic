@@ -1,7 +1,10 @@
 package com.example.workoholic;
 
 import java.util.Date;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,19 +13,22 @@ import android.widget.TextView;
 
 public class SessionHandler 
 {
-	Activity sessAct;
+	Activity context;
+	View sessAct;
 	Clock workClock;
 	Clock coffeeClock;
 	SessionCanvas sessionCanvas;
 	Long sessionID;
 	WorkingSessionsIO wsIO;
 	
-	public SessionHandler(Activity act)
+	@SuppressLint("NewApi")
+	public SessionHandler(View act,Activity context)
 	{
 		this.sessAct = act;
-		this.wsIO = new WorkingSessionsIO(sessAct);
+		this.context = context;
+		this.wsIO = new WorkingSessionsIO(context);
 		this.wsIO.open();
-		sessionCanvas = new SessionCanvas(act,this);
+		sessionCanvas = new SessionCanvas(sessAct,this,context);
 	}
 	public void drawCanvas()
 	{
@@ -56,8 +62,8 @@ public class SessionHandler
 	public void initClocks(){
     	TextView workClockHolder = (TextView) sessAct.findViewById(R.id.workTimeText);
     	TextView coffeeClockHolder = (TextView) sessAct.findViewById(R.id.coffeeTimeText);
-    	workClock = new Clock(sessAct,workClockHolder,"Working",this);
-    	coffeeClock = new Clock(sessAct, coffeeClockHolder,"Coffee",this);
+    	workClock = new Clock(sessAct,workClockHolder,"Working",this,context);
+    	coffeeClock = new Clock(sessAct, coffeeClockHolder,"Coffee",this,context);
     }
 	
 	public void addListeners()
@@ -70,11 +76,13 @@ public class SessionHandler
 				coffeeClock.toggleCounter();
 			}
     	});
+    	
     	workPlayBtn.setOnClickListener(new OnClickListener(){	
 			@Override
 			public void onClick(View arg0) {
 				workClock.toggleCounter();
 			}
     	});
+    	
     }
 }

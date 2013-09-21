@@ -19,51 +19,40 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-public class EditorFragment extends SherlockFragment {
+public class GraphFragment extends SherlockFragment {
   private static final String KEY_POSITION="position";
   private int position=-1;
 
-  static EditorFragment newInstance(int position) {
-    EditorFragment frag=new EditorFragment();
+  static GraphFragment newInstance(int position) {
+    GraphFragment frag=new GraphFragment();
     Bundle args=new Bundle();
-
     args.putInt(KEY_POSITION, position);
     frag.setArguments(args);
-
     return(frag);
   }
 
   static String getTitle(Context ctxt, int position) {
-    return("Daily Session");
+    //return(String.format(ctxt.getString(R.string.hint), position + 1));
+	  return "Graph View";
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container,
                            Bundle savedInstanceState) {
-    RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.editor, container,false);
-    SessionHandler sessionHandler = new SessionHandler(rl , this.getActivity());
-    
-    sessionHandler.drawCanvas();
-    position=getArguments().getInt(KEY_POSITION, -1);
-    
-    //editor.setHint(getTitle(getActivity(), position));
-    if ((position % 2)==0) {
-      setHasOptionsMenu(true);
-    }
-
-    return(rl);
+    LinearLayout ll = (LinearLayout) inflater.inflate(R.layout.graph_view, container,false);
+    return(ll);
   }
 
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.actions, menu);
-
     super.onCreateOptionsMenu(menu, inflater);
   }
 }
