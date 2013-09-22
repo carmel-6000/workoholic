@@ -38,17 +38,20 @@ public class SampleAdapter extends FragmentPagerAdapter {
 	  //Log.d("SampleAdapter","position -->"+position);
     if (position ==  0)
     {
-	  return(EditorFragment.newInstance(position));
-    }else 
-      return GraphFragment.newInstance(position); 
+      return GraphFragment.newInstance(position);
+    }else
+      return(EditorFragment.newInstance(position));
+       
   }
 
   @Override
   public String getPageTitle(int position) {
     if (position == 0){
-	  return(EditorFragment.getTitle(ctxt, position));}
-    else{
     	return(GraphFragment.getTitle(ctxt, position));
     }
+    else{
+  	  return(EditorFragment.getTitle(ctxt, position));
+    }
+    	
+    }
   }
-}

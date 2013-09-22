@@ -20,10 +20,13 @@ public class WorkingSessionsIO
   private SQLiteDatabase database;
   private SQLiteHandler dbHelper;
   @SuppressLint("SimpleDateFormat") SimpleDateFormat SDFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-  /*
-  private String[] allColumns = { SQLiteHandler.COL_ID,SQLiteHandler.COL_BEGIN_TIME,SQLiteHandler.COL_END_TIME,
-  SQLiteHandler.COL_DATE };
-  */
+  
+  private String[] allColumns = { 
+		  SQLiteHandler.COL_ID,
+		  SQLiteHandler.COL_BEGIN_TIME,
+		  SQLiteHandler.COL_END_TIME,
+		  SQLiteHandler.COL_DATE };
+  
   public WorkingSessionsIO(Context context) {
     dbHelper = new SQLiteHandler(context);
   }
@@ -43,10 +46,9 @@ public class WorkingSessionsIO
   public Boolean EndASession(Long sessionId)
   {
 	  ContentValues values = new ContentValues();
-	  
 	  values.put(
-			    SQLiteHandler.COL_END_TIME,
-			  	SDFormat.format(Calendar.getInstance().getTime())
+		SQLiteHandler.COL_END_TIME,
+		SDFormat.format(Calendar.getInstance().getTime())
 	  );
 	  //database.update(table, values, whereClause, whereArgs)
 	  database.update(SQLiteHandler.TABLE_NAME,values,SQLiteHandler.COL_ID +"= "+sessionId , null);
@@ -54,49 +56,53 @@ public class WorkingSessionsIO
 	  //Long insertId = database.insert(SQLiteHandler.TABLE_NAME, null, values);
 	  //return insertId;
   }
-  public void updateSession(String comment) {
-	  //database.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit, cancellationSignal);
-	 
+  public void updateSession(String WorkingSession) {
+	//database.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit, cancellationSignal);
     ContentValues values = new ContentValues();
     values.put(SQLiteHandler.COL_BEGIN_TIME,"23-07-2013 24:00:00");
     values.put(SQLiteHandler.COL_END_TIME,"23-07-2013 24:20:00");
     values.put(SQLiteHandler.COL_DATE,"23-07-2013");
     database.insert(SQLiteHandler.TABLE_NAME, null, values);
     /*
-    values.put(SQLiteHandler.COLUMN_COMMENT, comment);
-    long insertId = database.insert(SQLiteHandler.TABLE_COMMENTS, null,values);
+    values.put(SQLiteHandler.COLUMN_WorkingSession, WorkingSession);
+    long insertId = database.insert(SQLiteHandler.TABLE_WorkingSessionS, null,values);
     Cursor cursor = database.query(
-    	SQLiteHandler.TABLE_COMMENTS,
+    	SQLiteHandler.TABLE_WorkingSessionS,
         allColumns, SQLiteHandler.COL_ID + " = " + insertId, null,
         null, null, null
     );
     cursor.moveToFirst();
-    Comment newComment = cursorToComment(cursor);
+    WorkingSession newWorkingSession = cursorToWorkingSession(cursor);
     cursor.close();
-    return newComment;
+    return newWorkingSession;
 */
   }
-/*
-  public List<Comment> getAllComments() 
+  public Cursor getAllSessions(){
+	  Cursor cursor = database.query(SQLiteHandler.TABLE_NAME,allColumns, null, null, null, null, null);
+	  cursor.moveToFirst();
+	  return cursor;
+  }
+  
+  public List<WorkingSession> getAllWorkingSessions() 
   {
-    List<Comment> comments = new ArrayList<Comment>();
+    List<WorkingSession> sessionsList = new ArrayList<WorkingSession>();
     Cursor cursor = database.query(SQLiteHandler.TABLE_NAME,allColumns, null, null, null, null, null);
     cursor.moveToFirst();
     while (!cursor.isAfterLast()) {
-      Comment comment = cursorToComment(cursor);
-      comments.add(comment);
+      WorkingSession workingSession = cursorToSession(cursor);
+      sessionsList.add(workingSession);
       cursor.moveToNext();
     }
     // Make sure to close the cursor
     cursor.close();
-    return comments;
+    return sessionsList;
+  }
+  private WorkingSession cursorToSession(Cursor cursor) {
+    WorkingSession WorkingSession = new WorkingSession();
+    WorkingSession.setId(cursor.getLong(0));
+    WorkingSession.setBeginTime(cursor.getString(1));
+    WorkingSession.setEndTime(cursor.getString(2));
+    return WorkingSession;
   }
   
-  private Comment cursorToComment(Cursor cursor) {
-    Comment comment = new Comment();
-    comment.setId(cursor.getLong(0));
-    comment.setComment(cursor.getString(1));
-    return comment;
-  }
-  */
 }

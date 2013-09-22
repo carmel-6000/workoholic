@@ -16,10 +16,14 @@ package com.example.workoholic;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.CalendarContract.Colors;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
@@ -28,7 +32,7 @@ import com.actionbarsherlock.view.MenuInflater;
 public class GraphFragment extends SherlockFragment {
   private static final String KEY_POSITION="position";
   private int position=-1;
-
+  
   static GraphFragment newInstance(int position) {
     GraphFragment frag=new GraphFragment();
     Bundle args=new Bundle();
@@ -36,7 +40,7 @@ public class GraphFragment extends SherlockFragment {
     frag.setArguments(args);
     return(frag);
   }
-
+  
   static String getTitle(Context ctxt, int position) {
     //return(String.format(ctxt.getString(R.string.hint), position + 1));
 	  return "Graph View";
@@ -45,9 +49,14 @@ public class GraphFragment extends SherlockFragment {
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container,
-                           Bundle savedInstanceState) {
-    LinearLayout ll = (LinearLayout) inflater.inflate(R.layout.graph_view, container,false);
-    return(ll);
+                           Bundle savedInstanceState) 
+  	{
+	
+	LinearLayout wTable = (LinearLayout) inflater.inflate(R.layout.graph_view, container,false);
+	WorkingHoursHandler whHandler = new WorkingHoursHandler(wTable,container.getContext());
+	whHandler.createWHTable();
+    
+    return(wTable);
   }
 
   @Override

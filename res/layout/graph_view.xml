@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    
-            android:id="@+id/page_one"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-                    <TextView
-                    android:text="PAGE ONE IN"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="#f00"
-                    android:textSize="24dp"/>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+	
+	<TextView
+	        	android:id="@+id/workoholic"
+        		android:textSize="40sp"
+        		android:fontFamily="sans-serif"
+        		android:gravity="center"
+        		android:typeface="monospace"
+        		android:layout_height="wrap_content"
+        		android:layout_width="fill_parent"
+        		android:layout_marginRight="18dp"
+        		android:layout_marginTop="5dp"
+        		android:text="@string/workoholic" />
+	
+	<TableLayout 
+	    android:background="#CCC"
+	    android:paddingTop="1dp"
+	    android:id="@+id/workingHoursTable"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+	</TableLayout>
+	
 </LinearLayout>

@@ -241,7 +241,8 @@ int drawable abs__textfield_searchview_holo_light 0x7f02006c
 int drawable abs__textfield_searchview_right_holo_dark 0x7f02006d
 int drawable abs__textfield_searchview_right_holo_light 0x7f02006e
 int drawable abs__toast_frame 0x7f02006f
-int drawable ic_launcher 0x7f020070
+int drawable cell_shape 0x7f020070
+int drawable ic_launcher 0x7f020071
 int id CanvasLayout 0x7f040032
 int id abs__action_bar 0x7f040020
 int id abs__action_bar_container 0x7f04001f
@@ -291,7 +292,6 @@ int id edit_query 0x7f040026
 int id homeAsUp 0x7f040006
 int id listMode 0x7f040002
 int id normal 0x7f040001
-int id page_one 0x7f04003a
 int id pager 0x7f040039
 int id showCustom 0x7f040008
 int id showHome 0x7f040005
@@ -301,6 +301,7 @@ int id tabMode 0x7f040003
 int id useLogo 0x7f040004
 int id workPlayBtn 0x7f040036
 int id workTimeText 0x7f040035
+int id workingHoursTable 0x7f04003a
 int id workoholic 0x7f040033
 int id wrap_content 0x7f040000
 int integer abs__max_action_buttons 0x7f080000
