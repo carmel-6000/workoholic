@@ -1,11 +1,12 @@
 package com.example.workoholic;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,21 +18,24 @@ import android.util.Log;
 public class WorkingSessionsIO 
 {
   // Database fields
+  private static final String TAG = "WorkingSessionsIO";
   private SQLiteDatabase database;
   private SQLiteHandler dbHelper;
-  @SuppressLint("SimpleDateFormat") SimpleDateFormat SDFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+  SimpleDateFormat SDFormat = new SimpleDateFormat(Clock.GLOBAL_TIME_FORMAT,Locale.ENGLISH);
   
   private String[] allColumns = { 
 		  SQLiteHandler.COL_ID,
 		  SQLiteHandler.COL_BEGIN_TIME,
 		  SQLiteHandler.COL_END_TIME,
-		  SQLiteHandler.COL_DATE };
+		  SQLiteHandler.COL_DATE 
+  };
   
   public WorkingSessionsIO(Context context) {
     dbHelper = new SQLiteHandler(context);
   }
   public void open() throws SQLException {
     database = dbHelper.getWritableDatabase();
+    //database.execSQL("delete from "+SQLiteHandler.TABLE_NAME);
   }
   public void close() {
     dbHelper.close();
@@ -50,6 +54,7 @@ public class WorkingSessionsIO
 		SQLiteHandler.COL_END_TIME,
 		SDFormat.format(Calendar.getInstance().getTime())
 	  );
+	  Log.d(TAG,SDFormat.format(Calendar.getInstance().getTime()).toString());
 	  //database.update(table, values, whereClause, whereArgs)
 	  database.update(SQLiteHandler.TABLE_NAME,values,SQLiteHandler.COL_ID +"= "+sessionId , null);
 	  return true;
@@ -77,6 +82,23 @@ public class WorkingSessionsIO
     return newWorkingSession;
 */
   }
+  /*
+   * TODO: merge all collecting methods (List<WorkingSession>) together , only query should differed.
+   * make parent dbIO!!
+   * */
+  public List<WorkingSession> getMonthlySessions()
+  {
+	  List<WorkingSession> monthlyList = new ArrayList<WorkingSession>();
+	  Cursor cursor = database.query(SQLiteHandler.TABLE_NAME,allColumns, "strftime('%m',"+SQLiteHandler.COL_BEGIN_TIME+") = '10'", null, null, null, null);
+	  cursor.moveToFirst();
+	  while (!cursor.isAfterLast()) {
+	      WorkingSession workingSession = cursorToSession(cursor);
+	      monthlyList.add(workingSession);
+	  //    Log.d(TAG,"month 10 --> "+workingSession.toString());
+	      cursor.moveToNext();
+	  }
+	  return monthlyList;
+  }
   public Cursor getAllSessions(){
 	  Cursor cursor = database.query(SQLiteHandler.TABLE_NAME,allColumns, null, null, null, null, null);
 	  cursor.moveToFirst();
@@ -85,6 +107,7 @@ public class WorkingSessionsIO
   
   public List<WorkingSession> getAllWorkingSessions() 
   {
+	  Log.d(TAG,"getAllWorkingSessions launched");
     List<WorkingSession> sessionsList = new ArrayList<WorkingSession>();
     Cursor cursor = database.query(SQLiteHandler.TABLE_NAME,allColumns, null, null, null, null, null);
     cursor.moveToFirst();

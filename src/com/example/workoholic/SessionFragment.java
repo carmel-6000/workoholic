@@ -24,17 +24,15 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-public class EditorFragment extends SherlockFragment {
+public class SessionFragment extends SherlockFragment {
   private static final String KEY_POSITION="position";
   private int position=-1;
 
-  static EditorFragment newInstance(int position) {
-    EditorFragment frag=new EditorFragment();
+  static SessionFragment newInstance(int position) {
+    SessionFragment frag=new SessionFragment();
     Bundle args=new Bundle();
-
     args.putInt(KEY_POSITION, position);
     frag.setArguments(args);
-
     return(frag);
   }
 
@@ -46,24 +44,19 @@ public class EditorFragment extends SherlockFragment {
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container,
                            Bundle savedInstanceState) {
-    RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.editor, container,false);
+    RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.session_layout, container,false);
     SessionHandler sessionHandler = new SessionHandler(rl , this.getActivity());
-    
     sessionHandler.drawCanvas();
     position=getArguments().getInt(KEY_POSITION, -1);
-    
-    //editor.setHint(getTitle(getActivity(), position));
     if ((position % 2)==0) {
       setHasOptionsMenu(true);
     }
-
     return(rl);
   }
 
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.actions, menu);
-
     super.onCreateOptionsMenu(menu, inflater);
   }
 }

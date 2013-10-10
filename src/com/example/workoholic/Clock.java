@@ -1,16 +1,17 @@
 package com.example.workoholic;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Clock 
 {
+	public static final String GLOBAL_TIME_FORMAT="yyyy-MM-dd HH:mm:ss";
 	@SuppressWarnings("serial")
 	HashMap<String, Map<String,Boolean>> clocksConfig = new HashMap<String, Map<String,Boolean>>()
 	{{
@@ -31,9 +33,9 @@ public class Clock
 		      put("began",false);
 		 }});
 	}}; 
-	
 	final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 	ScheduledFuture<?> process;
+	ScheduledFuture<?> secondsHandProcess;
 	View act;
 	String clockName;
 	SessionHandler sessionHandler;
@@ -43,6 +45,7 @@ public class Clock
 	Date beginTime; 
 	SimpleDateFormat format1;
 	Activity context;
+	ImageView secondsHandImg;
 	
 	public Clock(View act,TextView clockHolder,String clockName,SessionHandler sessionHandler,
 			Activity context){
@@ -52,6 +55,7 @@ public class Clock
 		this.sessionHandler = sessionHandler;
 		this.sessionCanvas = new SessionCanvas(act,sessionHandler,context);
 		this.clockHolder = clockHolder;
+		this.rotateSecondsHand();
 		Log.d("Counter","Counter is Constructed");
 		
 	}
@@ -103,8 +107,9 @@ public class Clock
 			process.cancel(true);
 		}
 	}
-	@SuppressLint("SimpleDateFormat") public void incClockBySecond(){
-		format1 = new SimpleDateFormat("HH:mm:ss");
+	public void incClockBySecond(){
+		
+		format1 = new SimpleDateFormat("HH:mm:ss",Locale.ENGLISH);
 		context.runOnUiThread(new Runnable(){
 			@Override
 			public void run() {
@@ -114,6 +119,30 @@ public class Clock
 				clockHolder.setText(format1.format(cal1.getTime()));
 			}
 		});
+	}
+	
+	public void rotateSecondsHand(){
+		this.secondsHandImg = (ImageView) this.act.findViewById(R.id.imgsecond);
+		secondsHandProcess = service.scheduleWithFixedDelay(new Runnable(){
+			@Override
+			public void run()
+			{
+				context.runOnUiThread(new Runnable(){
+					@Override
+					public void run() {
+						 int seconds = (Calendar.getInstance()).get(Calendar.SECOND);
+						 RotateAnimation rotateAnimation = new RotateAnimation(
+						   (seconds - 1) * 6, seconds * 6,
+						   Animation.RELATIVE_TO_SELF, 0.5f,
+						   Animation.RELATIVE_TO_SELF, 0.5f);
+						 rotateAnimation.setInterpolator(new LinearInterpolator());
+						 rotateAnimation.setDuration(1000);
+						 rotateAnimation.setFillAfter(true);
+						 secondsHandImg.startAnimation(rotateAnimation);
+					}});		
+			}}, 
+				0, 1, TimeUnit.SECONDS
+		);
 	}
 	public void resetCal()
 	{

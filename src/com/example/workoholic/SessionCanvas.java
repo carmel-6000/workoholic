@@ -3,16 +3,21 @@ package com.example.workoholic;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import android.content.Context;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
+import android.app.Activity;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,11 +32,13 @@ public class SessionCanvas {
 		this.sessAct = sessAct;
 		this.context = context;
 		this.sessionHandler = sessionHandler;
-	
+		
 	}
 	public void setCurrentView(RelativeLayout thisView){
 		this.thisView = thisView;
 	}
+	
+	
 	public void printSessionBeginTime(final Date date){
 		context.runOnUiThread(new Runnable(){
 			@TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint({ "InlinedApi", "SimpleDateFormat" }) @Override
@@ -73,9 +80,9 @@ public class SessionCanvas {
 	{
 		
 		context.runOnUiThread(new Runnable(){
-			@SuppressLint({ "SimpleDateFormat", "InlinedApi" }) public void run() 
+			@SuppressLint({ "InlinedApi" }) public void run() 
 			{
-				String endTime = (new SimpleDateFormat("HH:mm:ss")).format(Calendar.getInstance().getTime());
+				String endTime = (new SimpleDateFormat("HH:mm:ss",Locale.ENGLISH)).format(Calendar.getInstance().getTime());
 				//RelativeLayout tView = (RelativeLayout) sessAct.findViewById(R.id.CanvasLayout);
 				TextView endTimeText=new TextView(context);
 				endTimeText.setTextSize(18);

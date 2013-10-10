@@ -11,9 +11,11 @@
     <string name="playBtn">Play</string>
     <string name="workPlayBtn">work</string>
     <string name="coffeePlayBtn">coffee</string>
-    
-    
 	<string name="hint">Editor #%d</string>
 	<string name="something">Something</string>
+	<string name="secondsHand">seconds hand image</string>
+	<string name="home">home</string>
+	<string name="help">help</string>
+	<string name="Export_CSV">Export to CSV</string>
     
 </resources>

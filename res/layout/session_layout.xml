@@ -1,26 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#000"
     android:orientation="vertical" >
-    	
     	<RelativeLayout 
     	android:id="@+id/CanvasLayout"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical" >
-    	
-	    	<!-- <TextView
-	        	android:id="@+id/workoholic"
-        		android:textSize="40sp"
-        		android:fontFamily="sans-serif"
-        		android:gravity="center"
-        		android:typeface="monospace"
-        		android:layout_height="wrap_content"
-        		android:layout_width="fill_parent"
-        		android:layout_marginRight="18dp"
-        		android:layout_marginTop="5dp"
-        		android:text="@string/workoholic" />
-	    	 -->
     	</RelativeLayout> <!--  ends CanvasLayout -->
     	<!--  clocks linearlayout -->
     	<RelativeLayout 
@@ -28,11 +15,9 @@
     	android:layout_width="fill_parent"
     	android:layout_height="100dp"
     	android:orientation="vertical" 
-    	android:background="#E8A2B4"
     	android:layout_alignParentBottom="true"
     	>
     	<!--  working clock -->
-    	
     	<LinearLayout 
     	android:layout_width="fill_parent"
     	android:layout_height="50dp"
@@ -78,4 +63,22 @@
     	</LinearLayout>
     
 	</RelativeLayout> <!--  clocks linearlayout ends : -->
+
+    	<AnalogClock
+        android:id="@+id/analogClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:dial="@drawable/analog_clock"
+        android:hand_minute="@drawable/minutes_hand"
+        android:hand_hour="@drawable/hours_hand" 
+        />
+       	<ImageView 
+        android:contentDescription="@string/secondsHand"
+        android:id="@+id/imgsecond"
+        android:src="@drawable/seconds_hand"
+    	android:layout_width="wrap_content" 
+     	android:layout_height="wrap_content"
+   		android:layout_centerInParent="true" />
  </RelativeLayout>   	

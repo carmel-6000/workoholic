@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <integer name="calendar_notebox_date_title_id">9932</integer>
+   <integer name="working_hours">9933</integer>
+   <integer name="comment">9934</integer>
+   
+   
+    
+</resources>

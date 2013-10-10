@@ -1,5 +1,8 @@
 package com.example.workoholic;
 
+import java.util.List;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -17,32 +20,29 @@ public class WorkingHoursHandler {
 		this.whView = whView;
 		this.context = context;
 		this.wsIO = new WorkingSessionsIO(context);
-		this.wsIO.open();
 	}
+	@SuppressLint("UseValueOf")
 	public TableLayout createWHTable()
 	{
 		TableLayout sTable = (TableLayout) whView.findViewById(R.id.workingHoursTable);
 	    TableRow rowChild;
 	    TextView beginTime;
 	    TextView endTime;
-	    Cursor sessCursor = wsIO.getAllSessions();
-		rowChild = new TableRow(context);
-	    while (!sessCursor.isAfterLast()) {
-	    	Log.d("WorkingHoursHandler",
-	    				sessCursor.getLong(0)+
-	    				sessCursor.getString(1)+
-	    				sessCursor.getString(2)
-	    	);
-	    
+	    wsIO.open();
+	    List<WorkingSession> wsList = wsIO.getAllWorkingSessions();
+	    wsIO.close();
+	    rowChild = new TableRow(context);
+	    for (WorkingSession ws : wsList)
+	    {
 	    	beginTime = new TextView(context);
-	    	beginTime.setText(sessCursor.getString(1));
+	    	beginTime.setText(ws.getBeginTime()+" : ");
 	    	endTime = new TextView(context);
-	    	endTime.setText(sessCursor.getString(2));
+	    	Integer sInterval = new Integer(ws.getSessionInterval());
+	    	endTime.setText(sInterval.toString());
 	    	rowChild.addView(beginTime);
 	    	rowChild.addView(endTime);
 	    	sTable.addView(rowChild);	
 	    	rowChild = new TableRow(context);
-	    	sessCursor.moveToNext();
 	    }
 	    return sTable;
 	}

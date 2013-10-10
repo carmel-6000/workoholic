@@ -27,7 +27,6 @@ public class SessionHandler
 		this.sessAct = act;
 		this.context = context;
 		this.wsIO = new WorkingSessionsIO(context);
-		this.wsIO.open();
 		sessionCanvas = new SessionCanvas(sessAct,this,context);
 	}
 	public void drawCanvas()
@@ -40,7 +39,9 @@ public class SessionHandler
 		Log.d("SessionHandler","End Session Launched");
 		stopAllClocks();
 		sessionCanvas.printSessionEndTime();
+	    wsIO.open();
 		wsIO.EndASession(this.sessionID);
+		wsIO.close();
 	}
 	public void stopAllClocks()
 	{
@@ -55,7 +56,9 @@ public class SessionHandler
 	public void saveBeginTime(Date beginTime)
 	{
 		//Calendar beginTime = workClock.getBeginTime();
-	    sessionID = wsIO.AppendANewSession(beginTime);
+	    wsIO.open();
+		sessionID = wsIO.AppendANewSession(beginTime);
+		wsIO.close();
 	    Log.d("SessionHandler","SessionID --> "+sessionID);
 
 	}

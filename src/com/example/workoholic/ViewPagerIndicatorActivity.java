@@ -14,19 +14,23 @@
 
 package com.example.workoholic;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.Button;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
+
 public class ViewPagerIndicatorActivity extends SherlockFragmentActivity 
 {
+  public static String PACKAGE_NAME;
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    PACKAGE_NAME = getApplicationContext().getPackageName();
     setContentView(R.layout.main);
     ViewPager pager=(ViewPager)findViewById(R.id.pager);
     pager.setAdapter(buildAdapter());
@@ -35,4 +39,16 @@ public class ViewPagerIndicatorActivity extends SherlockFragmentActivity
   private PagerAdapter buildAdapter() {
     return(new SampleAdapter(this, getSupportFragmentManager()));
   }
+/*
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+	  super.onCreateOptionsMenu(menu);
+    //  MenuInflater inflater = getSupportMenuInflater();
+//      inflater.inflate(R.menu.main_menu, menu);
+      return true;
+  }
+  */
+
+  
+  
 }
