@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory 
+        android:title="@string/general_settings"
+        android:key="pref_general_settings">
+        
+        <Preference 
+            android:key="pref_working_hours"
+            android:summary="@string/daily_working_hours_desc"
+            android:title="@string/daily_working_hours" />
+        <CheckBoxPreference
+            android:key="pref_audio_enabled"
+            android:summary="@string/audio_enabled_desc"
+            android:title="@string/audio_enabled"
+            android:defaultValue="true" />
+        <EditTextPreference
+            android:title="@string/working_place"
+            android:summary="@string/working_place_desc"
+            android:key="pref_working_place_name"
+            android:dialogTitle="@string/working_place_dialog_title"
+            android:persistent="true"
+            android:enabled="true"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>
+<!--  android:dependency="pref_key_auto_delete"-->
