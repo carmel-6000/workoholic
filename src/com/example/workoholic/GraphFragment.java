@@ -10,9 +10,8 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-public class GraphFragment extends SherlockFragment {
+public class GraphFragment extends MySherlockFragment {
   private static final String KEY_POSITION="position";
-  private int position=-1;
   
   static GraphFragment newInstance(int position) {
     GraphFragment frag=new GraphFragment();
@@ -23,7 +22,6 @@ public class GraphFragment extends SherlockFragment {
   }
   
   static String getTitle(Context ctxt, int position) {
-    //return(String.format(ctxt.getString(R.string.hint), position + 1));
 	  return "Graph View";
   }
 
@@ -32,15 +30,15 @@ public class GraphFragment extends SherlockFragment {
                            ViewGroup container,
                            Bundle savedInstanceState) 
   	{
-	
 	LinearLayout wTable = (LinearLayout) inflater.inflate(R.layout.graph_view, container,false);
 	WorkingHoursHandler whHandler = new WorkingHoursHandler(wTable,container.getContext());
 	whHandler.createWHTable();
 	return(wTable);
   }
+  
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    inflater.inflate(R.menu.actions, menu);
+    inflater.inflate(R.menu.graph_menu, menu);
     super.onCreateOptionsMenu(menu, inflater);
   }
 }

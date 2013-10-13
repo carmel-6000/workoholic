@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
     
     <application
         android:allowBackup="true"
@@ -15,6 +15,10 @@
         android:theme="@style/Theme.Sherlock.NoActionBar"
          >
          <!-- android:theme="@style/Theme.Sherlock.Light" -->
+          <service
+            android:name=".WorkaholicService"
+            android:exported="false">
+          </service>
         <activity
 			android:name=".ViewPagerIndicatorActivity"
 			android:theme="@style/Theme.Sherlock.NoActionBar"
@@ -53,9 +57,12 @@
 		    </intent-filter>
 		</activity>
         <activity
-            android:name="com.example.workoholic.MainActivity"
+            android:name="com.example.workoholic.PreferencesFragment"
             android:label="@string/app_name" >
-            
+		    <intent-filter>
+		        <action android:name="android.intent.action.MAIN" />
+		        <category android:name="android.intent.category.LAUNCHER" />
+		    </intent-filter>
         </activity>
     </application>
 

@@ -1,12 +1,4 @@
 package com.example.workoholic;
-import android.app.Activity;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
-import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +9,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+
+import com.actionbarsherlock.app.WorkaholicService;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Clock 
 {
@@ -72,6 +76,10 @@ public class Clock
 			{
 				Log.d("Counter","first time");
 				this.setBeginTime();
+				Intent mServiceIntent = new Intent(this.context, WorkaholicService.class);
+				context.startService(mServiceIntent);
+				Log.d("Counter","The service should have been started !!");
+				
 				sessionHandler.beginSession(getBeginTime());
 			}	
 				else

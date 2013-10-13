@@ -14,8 +14,16 @@
 	<string name="hint">Editor #%d</string>
 	<string name="something">Something</string>
 	<string name="secondsHand">seconds hand image</string>
-	<string name="home">home</string>
+	<string name="settings">Settings</string>
 	<string name="help">help</string>
 	<string name="Export_CSV">Export to CSV</string>
+	<string name="working_place">Working place</string>
+	<string name="working_place_desc">Your company\'s name</string>
+	<string name="daily_working_hours">Daily working hours</string>
+	<string name="daily_working_hours_desc">How many hours is your daily shift</string>
+	<string name="audio_enabled">Audio Enabled</string>
+	<string name="audio_enabled_desc">Turn off / on audio</string>
+	<string name="general_settings">General Settings</string>
+	<string name="working_place_dialog_title">Type in your company\'s name</string>
     
 </resources>

@@ -70,15 +70,33 @@
         android:layout_height="wrap_content" 
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:dial="@drawable/analog_clock"
-        android:hand_minute="@drawable/minutes_hand"
-        android:hand_hour="@drawable/hours_hand" 
+        android:dial="@drawable/analogclock_border_on"
+        android:hand_minute="@drawable/analogclock_minuts_hand_on"
+        android:hand_hour="@drawable/analogclock_hours_hand_on" 
         />
        	<ImageView 
         android:contentDescription="@string/secondsHand"
         android:id="@+id/imgsecond"
-        android:src="@drawable/seconds_hand"
+        android:src="@drawable/analogclock_seconds_hand_on"
     	android:layout_width="wrap_content" 
      	android:layout_height="wrap_content"
    		android:layout_centerInParent="true" />
+
+       	<ImageView
+       	    android:id="@+id/imageView1"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:layout_above="@+id/clocksLayout"
+       	    android:layout_alignLeft="@+id/analogClock"
+       	    android:src="@drawable/button_left_stopause_on" />
+
+       	<ImageView
+       	    android:id="@+id/imageView2"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:layout_above="@+id/clocksLayout"
+       	    android:layout_marginLeft="22dp"
+       	    android:layout_toRightOf="@+id/imageView1"
+       	    android:src="@drawable/button_right_end_on" />
+
  </RelativeLayout>   	

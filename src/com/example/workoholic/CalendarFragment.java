@@ -16,12 +16,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 //import com.exina.android.calendar.Cell;
 
-public class CalendarFragment extends SherlockFragment implements CalendarView.OnCellTouchListener{
+public class CalendarFragment extends MySherlockFragment implements CalendarView.OnCellTouchListener{
   private static final String KEY_POSITION="position";
   protected static final String TAG = "CalendarFragment";
   public static final String MIME_TYPE = "vnd.android.cursor.dir/vnd.exina.android.calendar.date";
@@ -60,19 +60,23 @@ public class CalendarFragment extends SherlockFragment implements CalendarView.O
 	this.setHasOptionsMenu(true);
 	return(calView);
   }
-  /*
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-      MenuInflater inflater = getSupportMenuInflater();
-      inflater.inflate(R.menu.main_menu, menu);
-      return true;
-  }
-  */
-  
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.calendar_menu, menu);
     super.onCreateOptionsMenu(menu, inflater);
+  }
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+      // Handle item selection
+      switch (item.getItemId()) {
+          case R.id.settings:
+              runSettings();
+        	  return true;
+          case R.id.help:
+              return true;
+          default:
+              return super.onOptionsItemSelected(item);
+      }
   }
   
 

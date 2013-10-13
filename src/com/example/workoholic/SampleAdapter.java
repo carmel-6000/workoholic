@@ -26,6 +26,7 @@ public class SampleAdapter extends FragmentPagerAdapter {
     	return CalendarFragment.newInstance(position);
     case 2:
     	return GraphFragment.newInstance(position);
+    	
     }
     return(SessionFragment.newInstance(position)); 
   }

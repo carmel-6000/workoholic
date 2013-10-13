@@ -24,7 +24,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-public class SessionFragment extends SherlockFragment {
+public class SessionFragment extends MySherlockFragment {
   private static final String KEY_POSITION="position";
   private int position=-1;
 
@@ -56,7 +56,7 @@ public class SessionFragment extends SherlockFragment {
 
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    inflater.inflate(R.menu.actions, menu);
+    inflater.inflate(R.menu.session_menu, menu);
     super.onCreateOptionsMenu(menu, inflater);
   }
 }

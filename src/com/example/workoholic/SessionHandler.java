@@ -68,7 +68,6 @@ public class SessionHandler
     	workClock = new Clock(sessAct,workClockHolder,"Working",this,context);
     	coffeeClock = new Clock(sessAct, coffeeClockHolder,"Coffee",this,context);
     }
-	
 	public void addListeners()
     {
     	Button workPlayBtn = (Button) sessAct.findViewById(R.id.workPlayBtn);
@@ -79,13 +78,11 @@ public class SessionHandler
 				coffeeClock.toggleCounter();
 			}
     	});
-    	
     	workPlayBtn.setOnClickListener(new OnClickListener(){	
 			@Override
 			public void onClick(View arg0) {
 				workClock.toggleCounter();
 			}
     	});
-    	
     }
 }
